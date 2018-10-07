@@ -13,28 +13,33 @@ class Tag extends Component {
     photos: [],
     currentPage: 0,
     currentImage: '',
+    hasMore: true,
   };
   nextPage = async () => {
     let currentPage = this.state.currentPage;
-    let photos;
+    let photos = [];
     //Handle
     const newUrlAPI = this.state.urlAPI.replace(
       '&page=' + currentPage,
       '&page=' + parseInt(currentPage + 1, 10)
     );
     await axios.get(newUrlAPI).then(res => {
-      photos = res.data.photos.photo.map((photo, index) => {
-        const width = parseInt(photo.width_s, 10);
-        const height = parseInt(photo.height_s, 10);
-        return {
-          src: photo.url_l,
-          thumbnail: photo.url_s,
-          thumbnailWidth: width,
-          thumbnailHeight: height,
-          caption: photo.title,
-          info: { owner: photo.ownername, views: photo.views },
-        };
-      });
+      if (res.data.photos.pages === currentPage) {
+        this.setState({ hasMore: false });
+      } else {
+        photos = res.data.photos.photo.map((photo, index) => {
+          const width = parseInt(photo.width_s, 10);
+          const height = parseInt(photo.height_s, 10);
+          return {
+            src: photo.url_l,
+            thumbnail: photo.url_s,
+            thumbnailWidth: width,
+            thumbnailHeight: height,
+            caption: photo.title,
+            info: { owner: photo.ownername, views: photo.views },
+          };
+        });
+      }
     });
     await this.setState({
       urlAPI: newUrlAPI,
@@ -57,6 +62,7 @@ class Tag extends Component {
           photos={this.state.photos}
           nextPage={this.nextPage}
           onClickImage={this.onClickImage}
+          hasMore={this.state.hasMore}
         />
       </div>
     );

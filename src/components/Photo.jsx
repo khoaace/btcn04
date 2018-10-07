@@ -79,8 +79,8 @@ class Photo extends Component {
         <br />
         <br />
         <center>
-          <div className="media">
-            <div className="media-body">
+          <div className="media" style={{ width: '100%' }}>
+            <div className="media-body" style={{ width: '100%' }}>
               <h4 className="media-heading">
                 <small> Upload by </small>
                 <strong>{this.state.username}</strong>

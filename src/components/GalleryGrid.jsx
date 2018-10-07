@@ -30,14 +30,16 @@ const Explore = props => {
     <InfiniteScroll
       pageStart={0}
       loadMore={props.nextPage}
-      hasMore={true || false}
+      hasMore={props.hasMore}
       loader={
         <div className="loader" key={0}>
-          <img
-            src="https://cdn.dribbble.com/users/359314/screenshots/2379673/untitled-3.gif"
-            style={{ width: '300px', height: '200px' }}
-            alt="Loading"
-          />
+          <center>
+            <img
+              src="https://avatars.mds.yandex.net/get-pdb/1352825/92c6e289-4737-4ce3-a976-bd29e8225b38/orig"
+              style={{ width: '300px', height: '200px' }}
+              alt="Loading"
+            />
+          </center>
         </div>
       }
     >
