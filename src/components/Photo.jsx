@@ -31,7 +31,7 @@ class Photo extends Component {
       title = res.data.photo.title._content;
     });
     await axios.get(apiUrlPhotoSrc).then(res => {
-      urlPhoto = res.data.sizes.size[8].source;
+      urlPhoto = res.data.sizes.size[res.data.sizes.size.length - 4].source;
     });
 
     await this.setState({
@@ -47,7 +47,7 @@ class Photo extends Component {
 
   render() {
     const renderTags = this.state.tags.map((tag, index) => (
-      <span className="label label-default" key={index}>
+      <span className="label label-primary" key={index}>
         <a
           href={'/tag/' + tag._content}
           style={{ textDecoration: 'none', color: 'white' }}
@@ -79,17 +79,11 @@ class Photo extends Component {
         <br />
         <br />
         <center>
-          <div className="media" style={{ width: '100%' }}>
-            <div className="media-body" style={{ width: '100%' }}>
-              <h4 className="media-heading">
-                <small> Upload by </small>
-                <strong>{this.state.username}</strong>
-              </h4>
-              <h5>Description : {this.state.description}</h5>
-              <hr style={{ margin: '8px auto' }} />
-              {renderTags}
-            </div>
-          </div>
+          <small> Upload by </small>
+          <strong>{this.state.username}</strong>
+          <h5>Description : {this.state.description}</h5>
+          <hr style={{ margin: '8px auto' }} />
+          <div className="container"> {renderTags}</div>
         </center>
         <br /> <br />
       </div>
