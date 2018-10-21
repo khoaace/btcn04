@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 //Components
 import GalleryGrid from './GalleryGrid';
-//Connect to Store
-import { connect } from 'react-redux';
-import { getInfo } from '../actions/Photos';
+import Helpers from '../helpers/getPhoto';
 
 class Explore extends Component {
   state = {
@@ -48,14 +46,11 @@ class Explore extends Component {
     });
   };
   onClickImage = photo => {
-    console.log('first' + this.props.text);
-    this.props.getInfo('hahaha');
-    console.log('second' + this.props.text);
     let input = photo.src;
     let posEnd = input.indexOf('_');
     let posStart = input.lastIndexOf('/');
     let output = input.slice(posStart + 1, posEnd);
-    /*     window.location.href = '/photo/' + output; */
+    window.location.href = '/photo/' + output;
   };
 
   render() {
@@ -72,17 +67,4 @@ class Explore extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  photos: state.photos,
-  currentPage: state.currentPage,
-  text: state.text,
-});
-
-const mapDispatchToProps = dispatch => ({
-  getInfo: text => dispatch(getInfo(text)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Explore);
+export default Explore;

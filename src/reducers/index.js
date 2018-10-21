@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import handlePhotos from './handlePhotos';
+import Photos from './Photos';
 
 export default combineReducers({
-  handlePhotos,
+  Photos,
 });
