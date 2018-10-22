@@ -1,10 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import './App.css';
-// Axios calls API
-//Components
-import Photo from './components/Photo.jsx';
-import Explore from './components/Explore.jsx';
-import Tag from './components/Tag.jsx';
 import Navbar from './components/Navbar.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import { routesMain } from './routes/index';

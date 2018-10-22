@@ -14,8 +14,6 @@ const Explore = props => {
       );
     });
   };
-  console.log('hahah');
-  console.log(props.photos);
   var photos = props.photos.map(i => {
     i.customOverlay = (
       <div style={captionStyle}>

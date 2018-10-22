@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import Explore from '../containers/Explore';
-import Photo from '../components/Photo';
+import PhotoInfo from '../containers/PhotoInfo';
 import history from '../history';
 
 const routes = [
@@ -13,12 +13,12 @@ const routes = [
   {
     path: '/tag/:tag_search',
     exact: false,
-    main: () => <Photo />,
+    main: () => <PhotoInfo />,
   },
   {
     path: '/photo/:id',
     exact: false,
-    main: () => <Photo />,
+    main: () => <PhotoInfo />,
   },
 ];
 
