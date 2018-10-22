@@ -5,7 +5,9 @@ import axios from 'axios';
 import GalleryGrid from './GalleryGrid';
 //Connect to Store
 import { connect } from 'react-redux';
-import { getInfo } from '../actions/Photos';
+import { getInfo } from '../actions';
+import { withRouter } from 'react-router';
+import history from '../history';
 
 class Explore extends Component {
   state = {
@@ -15,6 +17,7 @@ class Explore extends Component {
     currentImage: '',
     hasMore: true,
   };
+
   nextPage = async () => {
     let currentPage = this.state.currentPage;
     let photos = [];
@@ -55,14 +58,14 @@ class Explore extends Component {
     let posEnd = input.indexOf('_');
     let posStart = input.lastIndexOf('/');
     let output = input.slice(posStart + 1, posEnd);
-    /*     window.location.href = '/photo/' + output; */
+    // history.replace('/photo/' + output);
   };
 
   render() {
     return (
       <div style={{ width: '100%' }}>
         <GalleryGrid
-          photos={this.state.photos}
+          photos={this.props.photos}
           nextPage={this.nextPage}
           onClickImage={this.onClickImage}
           hasMore={this.state.hasMore}
@@ -73,16 +76,9 @@ class Explore extends Component {
 }
 
 const mapStateToProps = state => ({
-  photos: state.photos,
-  currentPage: state.currentPage,
-  text: state.text,
+  photos: state.Photos.photo,
+  currentPage: state.Photos.currentPage,
+  text: state.Photos.text,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getInfo: text => dispatch(getInfo(text)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Explore);
+export default withRouter(connect(mapStateToProps)(Explore));

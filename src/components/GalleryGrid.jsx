@@ -14,13 +14,13 @@ const Explore = props => {
       );
     });
   };
+  console.log('hahah');
+  console.log(props.photos);
   var photos = props.photos.map(i => {
     i.customOverlay = (
       <div style={captionStyle}>
         <div>Title : {i.caption}</div>
-        Owner : {i.info.owner}
-        <br />
-        Views : {i.info.views}
+
         {i.hasOwnProperty('tags') && setCustomTags(i)}
       </div>
     );
@@ -30,7 +30,7 @@ const Explore = props => {
     <InfiniteScroll
       pageStart={0}
       loadMore={props.nextPage}
-      hasMore={props.hasMore}
+      hasMore={true}
       loader={
         <div className="loader" key={0}>
           <center>

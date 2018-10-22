@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router';
 
 class Photo extends Component {
   constructor(props) {
@@ -17,11 +18,11 @@ class Photo extends Component {
     let photo, urlPhoto, tags, description, title, username;
     let apiUrlInfo =
       'https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=6517187ddd2d0dde34a502f0bb2fc991&photo_id=' +
-      this.props.match.id +
+      this.props.match.params.id +
       '&format=json&nojsoncallback=1';
     let apiUrlPhotoSrc =
       'https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=6517187ddd2d0dde34a502f0bb2fc991&photo_id=' +
-      this.props.match.id +
+      this.props.match.params.id +
       '&format=json&nojsoncallback=1';
     await axios.get(apiUrlInfo).then(res => {
       photo = res.data.photo;
@@ -91,4 +92,4 @@ class Photo extends Component {
   }
 }
 
-export default Photo;
+export default withRouter(Photo);
