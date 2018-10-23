@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setPhotoCurrent } from '../actions';
 import { setUrlPhoto } from '../actions';
 import * as helpers from '../helpers/Photos';
+import * as Constant from '../constants/Initial';
 import Photo from '../components/Photo';
 
 class PhotoInfo extends Component {
@@ -21,7 +22,7 @@ class PhotoInfo extends Component {
     await helpers
       .getPhotoInfo(apiUrlInfo)
       .then(result => {
-        //this.props.setPhotoCurrent(result);
+        this.props.setPhotoCurrent(result);
       })
       .catch(error => console.log(error));
 

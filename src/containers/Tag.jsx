@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 //Components
 import * as helpers from '../helpers/Photos';
-import * as Constant from '../constants/Initial';
 import GalleryGrid from '../components/GalleryGrid';
+import * as Constant from '../constants/Initial';
 //Connect to Store
 import { connect } from 'react-redux';
 import { setPhotoList } from '../actions';
@@ -13,7 +13,9 @@ class Explore extends Component {
   nextPage = async () => {
     let API = `https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=${
       Constant.API_KEY
-    }&extras=url_s%2Curl_l%2Cowner_name%2Cviews&per_page=20&page=${
+    }&tags=${
+      this.props.match.params.tag
+    }&extras=url_l%2Curl_s%2Cowner_name%2Cviews&per_page=20&page=${
       this.props.currentPage
     }&format=json&nojsoncallback=1`;
     await helpers

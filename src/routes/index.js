@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import Explore from '../containers/Explore';
 import PhotoInfo from '../containers/PhotoInfo';
+import Tag from '../containers/Tag';
 import history from '../history';
 
 const routes = [
@@ -18,7 +19,7 @@ const routes = [
   {
     path: '/photo/:id',
     exact: false,
-    main: () => <PhotoInfo />,
+    main: () => <Tag />,
   },
 ];
 
