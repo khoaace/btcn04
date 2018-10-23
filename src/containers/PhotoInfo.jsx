@@ -21,8 +21,7 @@ class PhotoInfo extends Component {
     await helpers
       .getPhotoInfo(apiUrlInfo)
       .then(result => {
-        this.props.setPhotoCurrent(result);
-        console.log(this.props.currentPhoto);
+        //this.props.setPhotoCurrent(result);
       })
       .catch(error => console.log(error));
 
@@ -35,6 +34,7 @@ class PhotoInfo extends Component {
   };
 
   render() {
+    console.log('gia tri la ' + this.props.urlPhoto);
     return (
       <Photo photo={this.props.currentPhoto} urlPhoto={this.props.urlPhoto} />
     );

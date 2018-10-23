@@ -1,25 +1,21 @@
 import * as ActionTypes from '../constants/ActionTypes';
+import { fromJS } from 'immutable';
 
 //Init Value of State
-const initStatePhoto = {
-  currentPhoto: {},
-  urlPhoto: '',
-};
+const initialState = fromJS({
+  currentPhoto: { a: 'b', c: 'd' },
+  urlPhoto: 'hahaha',
+});
 
-const currentphoto = (state = initStatePhoto, action) => {
+const Currentphoto = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.SET_CURRENT_PHOTO:
-      console.log(action.photo);
-      return Object.assign({}, state, {
-        currentPhoto: { ...action.photo },
-      });
     case ActionTypes.SET_URL_PHOTO:
-      return Object.assign({}, state, {
-        urlPhoto: action.url,
-      });
+      return state.set('currentPhoto', action.photo);
+    case ActionTypes.SET_CURRENT_PHOTO:
+      return state.set('urlPhoto', action.url);
     default:
       return state;
   }
 };
 
-export default currentphoto;
+export default Currentphoto;

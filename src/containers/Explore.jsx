@@ -21,6 +21,7 @@ class Explore extends Component {
       .catch(error => console.log(error));
   };
   onClickImage = photo => {
+    console.log(this.props.photos);
     let input = photo.src;
     let posEnd = input.indexOf('_');
     let posStart = input.lastIndexOf('/');
