@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
+import history from '../history';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { clearPhotoList } from '../actions';
 
 class Navbar extends Component {
+  handleSearch = async evt => {
+    evt.preventDefault();
+    if (this.refs.search.value === '&' || this.refs.search.value === '#')
+      alert('Invalid');
+    else {
+      await this.props.clearPhotoList();
+      await history.replace('/tag/' + this.refs.search.value);
+    }
+  };
+  clickHome = async () => {
+    this.props.clearPhotoList();
+    history.replace('/');
+  };
   render() {
     return (
       <nav className="navbar navbar-inverse">
@@ -15,7 +33,7 @@ class Navbar extends Component {
           </div>
           <ul className="nav navbar-nav">
             <li className="active">
-              <a to="/">Explore</a>
+              <a onClick={this.clickHome}>Explore</a>
             </li>
           </ul>
           <form
@@ -43,4 +61,18 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+  photos: state.Photos.photos,
+  currentPage: state.Photos.currentPage,
+});
+
+const mapDispatchToProps = dispatch => ({
+  clearPhotoList: () => dispatch(clearPhotoList()),
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Navbar)
+);

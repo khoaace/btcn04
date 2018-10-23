@@ -3,6 +3,6 @@ import Photos from './photos';
 import CurrentPhoto from './currentphoto';
 
 export default combineReducers({
-  Photos,
   CurrentPhoto,
+  Photos,
 });

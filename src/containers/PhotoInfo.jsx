@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { setPhotoCurrent } from '../actions';
 import { setUrlPhoto } from '../actions';
 import * as helpers from '../helpers/Photos';
-import * as Constant from '../constants/Initial';
 import Photo from '../components/Photo';
 
 class PhotoInfo extends Component {
-  componentWillMount = async () => {
+  componentWillMount = async () => {};
+  getData = async () => {
     let apiUrlInfo =
       'https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=6517187ddd2d0dde34a502f0bb2fc991&photo_id=' +
       this.props.match.params.id +
@@ -33,9 +33,8 @@ class PhotoInfo extends Component {
       })
       .catch(error => console.log(error));
   };
-
   render() {
-    console.log('gia tri la ' + this.props.urlPhoto);
+    this.getData();
     return (
       <Photo photo={this.props.currentPhoto} urlPhoto={this.props.urlPhoto} />
     );

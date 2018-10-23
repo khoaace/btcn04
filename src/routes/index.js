@@ -12,12 +12,12 @@ const routes = [
     main: () => <Explore />,
   },
   {
-    path: '/tag/:tag_search',
+    path: '/photo/:idphoto',
     exact: false,
     main: () => <PhotoInfo />,
   },
   {
-    path: '/photo/:id',
+    path: '/tag/:tagname',
     exact: false,
     main: () => <Tag />,
   },

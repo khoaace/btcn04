@@ -3,13 +3,12 @@ import * as ActionTypes from '../constants/ActionTypes';
 //Init Value of State
 const initStatePhoto = {
   photos: [],
-  currentPage: 0,
+  currentPage: 1,
 };
 
 const photos = (state = initStatePhoto, action) => {
   switch (action.type) {
     case ActionTypes.SET_PHOTOS_LIST:
-      console.log('Vo de update ne' + state.currentPage);
       return {
         ...state,
         photos: [...state.photos, ...action.photos],

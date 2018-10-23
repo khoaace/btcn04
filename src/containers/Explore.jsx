@@ -6,16 +6,21 @@ import GalleryGrid from '../components/GalleryGrid';
 //Connect to Store
 import { connect } from 'react-redux';
 import { setPhotoList } from '../actions';
+import { clearPhotoList } from '../actions';
 import { withRouter } from 'react-router';
 import history from '../history';
 
 class Explore extends Component {
+  componentWillMount = async () => {
+    await this.props.clearPhotoList();
+  };
   nextPage = async () => {
     let API = `https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=${
       Constant.API_KEY
     }&extras=url_s%2Curl_l%2Cowner_name%2Cviews&per_page=20&page=${
       this.props.currentPage
     }&format=json&nojsoncallback=1`;
+    await console.log(API);
     await helpers
       .getPhotos(API, this.props.currentPage)
       .then(result => {
@@ -52,6 +57,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setPhotoList: image => dispatch(setPhotoList(image)),
+  clearPhotoList: () => dispatch(clearPhotoList()),
 });
 
 export default withRouter(
